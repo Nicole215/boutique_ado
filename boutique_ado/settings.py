@@ -11,10 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +26,7 @@ SECRET_KEY = 'django-insecure-%o6qox!b3_1yy9@gj*!8(_5+amwrfgs$$z74ny46hxhrx@4a3-
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-nicole215-boutiqueado-9hhmklnqljn.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = ['https://8000-nicole215-boutiqueado-9hhmklnqljn.ws.codeinstitute-ide.net']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -71,15 +72,25 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-]
+)
 
 SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 
@@ -90,7 +101,7 @@ WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
