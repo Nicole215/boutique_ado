@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-%o6qox!b3_1yy9@gj*!8(_5+amwrfgs$$z74ny46hxhrx@4a3-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-nicole215-boutiqueado-9hhmklnqljn.ws.codeinstitute-ide.net']
 CSRF_TRUSTED_ORIGINS = ['https://8000-nicole215-boutiqueado-9hhmklnqljn.ws.codeinstitute-ide.net']
@@ -172,8 +172,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_51QFedvHPsg9Sgnt3FcuyqeE1Xo9zTFza2rXecnhlDZQFDQ0H7GHW91kU8swtyL5nKekF37D6THK8n7W5zzu3CKJy00AMuNw6F0')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51QFedvHPsg9Sgnt3UWB16t1g6VCFRFk8pcHf3RKaEhm7juLZkLLn09zppaa6bfd2iPQTnRKp5vOVWXGiG0IuaG9e00V6mkYYPp')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
